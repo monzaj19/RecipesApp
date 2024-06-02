@@ -22,4 +22,9 @@ public class RecipeService {
         String url = BASE_URL + "complexSearch?apiKey=" + apiKey + "&query=" + query;
         return restTemplate.getForObject(url, String.class);
     }
+
+    public String getRecipeById(String id) {
+        String url = String.format("%s/%s/information?apiKey=%s", BASE_URL, id, apiKey);
+        return restTemplate.getForObject(url, String.class);
+    }
 }

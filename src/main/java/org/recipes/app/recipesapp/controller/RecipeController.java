@@ -2,10 +2,7 @@ package org.recipes.app.recipesapp.controller;
 
 import org.recipes.app.recipesapp.service.RecipeService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/recipes")
@@ -19,6 +16,12 @@ public class RecipeController {
     @GetMapping
     public ResponseEntity<String> getRecipes(@RequestParam String query) {
         String response = recipeService.getRecipes(query);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/recipe/{id}")
+    public ResponseEntity<String> getRecipeById(@PathVariable String id) {
+        String response = recipeService.getRecipeById(id);
         return ResponseEntity.ok(response);
     }
 }
